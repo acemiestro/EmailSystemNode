@@ -1,0 +1,21 @@
+{
+  "name": "everyone",
+  "version": "1.0.0",
+  "description": "full stack node application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Jasbir Singh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.4",
+    "pug": "^2.0.4",
+    "validator": "^12.1.0"
+  },
+  "devDependencies": {}
+}
