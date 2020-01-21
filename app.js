@@ -1,21 +1,25 @@
 const express = require("express");
 const app = express();
-const users = require("./data/users");
+// const users = require("./data/users");
 const planRouter = require("./routers/planRouter");
 const userRouter = require("./routers/userRouter");
 const viewRouter = require("./routers/viewRouter");
 // converts buffer to json
-app.use(express.static("public"));
-
-app.set("view engine", "pug")
-app.set("views", "views")
 app.use(express.json());
-app.get("/", function(req, res){
-  console.log(req.url)
-  res.render("base.pug")
-})
+// => static files
+app.use(express.static("public"));
+// pug => render
+app.set("view engine", "pug");
+app.set("views", "views");
 
-app.use("/", viewRouter)
+
+
+app.post("/api/login", function(req, res) {
+  console.log(req.body);
+  res.json({ data: "User verfied" });
+});
+app.use("/", viewRouter);
+
 app.use("/api/plans", planRouter);
 app.use("/api/users", userRouter);
 

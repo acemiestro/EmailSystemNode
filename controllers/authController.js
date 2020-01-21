@@ -20,7 +20,6 @@ module.exports.signup = async function(req, res) {
     res.json({ err });
   }
 };
-
 // Login
 module.exports.login = async function(req, res) {
   try {
@@ -49,7 +48,6 @@ module.exports.login = async function(req, res) {
     });
   }
 };
-
 module.exports.protectRoute = async function(req, res, next) {
   // 1. Get The Token
   // console.log(req.headers.authorization);
@@ -77,21 +75,6 @@ module.exports.protectRoute = async function(req, res, next) {
     res.json(err);
   }
 };
-
-module.exports.isAuthorized = function(arr){
-  return function(req, res, next){
-    var {role} = req.user
-    if(arr.includes(role) == true){
-      next()
-    }
-    else{
-      return res.json({
-        data: "You're not Authorized!"
-      })
-    }
-  }
-};
-
 module.exports.forgetPassword = async function(req, res) {
   // 1. email
   try {
@@ -144,9 +127,7 @@ module.exports.resetPassword = async function(req, res) {
     console.log(err);
     res.json({  err });
   }
-
   //  2. find user => token
-
   // user.password =>
   // await user.save();
   // 3. user => update user => password,updatePassword,token => undefined

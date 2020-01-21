@@ -10,16 +10,16 @@ const {
   queryAdder
 } = require("../controllers/planController");
 // api/plans => post
-const { protectRoute,isAuthorized } = require("../controllers/authController");
+const { protectRoute } = require("../controllers/authController");
 
 planRouter
   .route("")
-  .get(protectRoute, isAuthorized(["admin"]), getAllPlans)
+  .get(protectRoute, getAllPlans)
   .post(checkInput, createPlan);
 planRouter.route("/best-5-plans").get(queryAdder, getAllPlans);
 planRouter
   .route("/:id")
   .patch(updatePlan)
-  .delete(protectRoute, isAuthorized(["admin", "resto owner"]))
+  .delete(deletePlan)
   .get(getPlan);
 module.exports = planRouter;
