@@ -1,7 +1,7 @@
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const KEY = require("../configs/config").KEY;
-// Signup
+
 module.exports.signup = async function(req, res) {
   // 1. create user
   try {
@@ -9,18 +9,20 @@ module.exports.signup = async function(req, res) {
     // payload
     const id = user["_id"];
     // 2.create Token
-    const token = await jwt.sign(JSON.stringify(id), KEY);
+    const token = await jwt.sign({id}, KEY);
     // 3. Send the token
+    res.cookies("jwt", token, {httpOnly: true})
     res.json({
       user,
-      token
+      token,
+      success: "User Signed Up "
     });
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     res.json({ err });
   }
 };
-// Login
 module.exports.login = async function(req, res) {
   try {
     // email,password
@@ -31,11 +33,13 @@ module.exports.login = async function(req, res) {
     console.log(dbPassword);
     if (dbPassword == password) {
       const id = user["_id"];
-      const token = await jwt.sign(JSON.stringify(id), KEY);
+      const token = await jwt.sign({id}, KEY);
       console.log(token);
+      res.cookies("jwt", token, {httpOnly: true})
       return res.json({
         user,
-        token
+        token,
+        success: "User logged in "
       });
     } else {
       return res.json({
@@ -100,7 +104,6 @@ module.exports.forgetPassword = async function(req, res) {
 
   // 4. Client => email token
 };
-
 module.exports.resetPassword = async function(req, res) {
   //  1. token,password,confirmPassword
   try {
@@ -132,4 +135,34 @@ module.exports.resetPassword = async function(req, res) {
   // await user.save();
   // 3. user => update user => password,updatePassword,token => undefined
 };
-
+module.exports.isUserVerified = async function(req, res, next) { 
+  try {
+    if (req.cookies && req.cookies.jwt) {
+      // 2. Verfiy the token{
+      const token = req.cookies.jwt
+      const ans = await jwt.verify(token, KEY);
+      if (ans) {
+        const user = await userModel.findById(ans.id)
+        req.user = user
+        next();
+      } 
+      else {
+        next()
+      }
+    } 
+    else {
+      next()
+    }
+    // 3. If verfied Call next;
+  } 
+  catch (err) {
+    res.json(err);
+  }
+};
+module.exports.logOut = function(req, res) {
+  res.cookies("jwt", "ssddds", {
+    httpOnly: true,
+    expires: new Date(Date.now()) 
+  })
+  res.redirect("/")
+};
