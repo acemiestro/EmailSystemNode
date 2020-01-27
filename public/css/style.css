@@ -47,7 +47,7 @@ header,
 }
 
 .nav-line:hover {
-  border-bottom: 0.1rem solid #f63854;
+  border-bottom: 0.1rem solid #DAA520;
 }
 .showcase {
   position: absolute;
@@ -68,7 +68,7 @@ header,
 }
 
 .developer {
-  color: #f63854;
+  color: #DAA520;
   font-weight: bold;
 }
 
@@ -77,14 +77,14 @@ header,
   color: white;
   margin-right: 1rem;
   padding: 1rem;
-  background-color: #f63854;
+  background-color: #DAA520;
   border-radius: 4rem;
-  border: 0.2rem solid #f63854;
+  border: 0.2rem solid #DAA520;
   transition: transform 0.3s, color 0.3s, background-color 0.3s;
 }
 
 .btn-empty {
-  color: #f63854;
+  color: #DAA520;
   background-color: transparent;
 }
 .btn:hover {
@@ -92,12 +92,12 @@ header,
 }
 .btn-empty:hover {
   color: white;
-  background-color: #f63854;
+  background-color: #DAA520;
 }
 .icon {
   /* text-align: center; */
   margin-left: 40%;
-  color: #f63854;
+  color: #DAA520;
   font-size: 300%;
   /* padding-left: 5rem; */
   margin-bottom: 0.9rem;
@@ -128,7 +128,7 @@ h2 {
 }
 h2::after {
   content: "";
-  color: #f63854;
+  color: #DAA520;
   display: block;
   border-bottom: solid;
   margin: 2rem 31rem;
@@ -161,10 +161,10 @@ h3 {
   /* z-index: -1rem; */
 }
 .step-container div {
-  color: #f63854;
+  color: #DAA520;
   height: 4rem;
   width: 4rem;
-  border-color: #f63854;
+  border-color: #DAA520;
   text-align: center;
   padding-top: 0.7rem;
   border-radius: 50%;
@@ -241,7 +241,7 @@ cite {
   padding-bottom: 1rem;
 }
 .small-icon {
-  color: #f63854;
+  color: #DAA520;
   margin-right: 1rem;
 }
 
@@ -287,7 +287,7 @@ cite {
 }
 .pricing {
   font-size: 300%;
-  color: #f63854;
+  color: #DAA520;
 }
 /* .features { */
 /* scale: transform(2); */

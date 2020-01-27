@@ -11,7 +11,7 @@ module.exports.signup = async function(req, res) {
     // 2.create Token
     const token = await jwt.sign({id}, KEY);
     // 3. Send the token
-    res.cookies("jwt", token, {httpOnly: true})
+    res.cookie("jwt", token, {httpOnly: true})
     res.json({
       user,
       token,
@@ -35,7 +35,7 @@ module.exports.login = async function(req, res) {
       const id = user["_id"];
       const token = await jwt.sign({id}, KEY);
       console.log(token);
-      res.cookies("jwt", token, {httpOnly: true})
+      res.cookie("jwt", token, {httpOnly: true})
       return res.json({
         user,
         token,
@@ -160,7 +160,7 @@ module.exports.isUserVerified = async function(req, res, next) {
   }
 };
 module.exports.logOut = function(req, res) {
-  res.cookies("jwt", "ssddds", {
+  res.cookie("jwt", "ssddds", {
     httpOnly: true,
     expires: new Date(Date.now()) 
   })
