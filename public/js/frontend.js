@@ -1,10 +1,11 @@
+// selector
 const login = document.querySelector(".login");
 const signup = document.querySelector(".signup")
 
 async function sendLogin(email, password) {
     const response = await axios.post("/api/users/login", {email, password});
     if (response.data.success){
-        alert("User Logged In");
+        location.assign("/")
     }
     else{
         alert("Something went wrong")
@@ -14,7 +15,7 @@ async function sendLogin(email, password) {
 async function sendSignUP(name, password, confirmPassword, email, role, phone) {
     const response = await axios.post("/api/users/signup", {name, password, confirmPassword, email, role, phone});
     if (response.data.success){
-        alert("User Signed Up");
+        location.assign("/")
     }
     else{
         alert("Something went wrong")

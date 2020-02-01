@@ -1,23 +1,34 @@
 const express = require("express");
 const app = express();
+
+const cookieParser = require("cookie-parser");
+
 // const users = require("./data/users");
 const planRouter = require("./routers/planRouter");
 const userRouter = require("./routers/userRouter");
 const viewRouter = require("./routers/viewRouter");
-const cookieParser = require("cookie-parser")
 // converts buffer to json
+// 
+app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 // => static files
 app.use(express.static("public"));
-app.use(cookieParser())
+
+app.use(cookieParser());
+
 // pug => render
 app.set("view engine", "pug");
 app.set("views", "views");
-app.post("/api/login", function(req, res) {
-  console.log(req.body);
-  res.json({ data: "User verfied" });
-});
+
+
+app.use(function(req,res,next){
+  console.log("cookies");
+  console.log(req.cookies)
+  console.log("end");
+next();
+})
 app.use("/", viewRouter);
+
 app.use("/api/plans", planRouter);
 app.use("/api/users", userRouter);
 

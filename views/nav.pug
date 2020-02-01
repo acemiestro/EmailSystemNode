@@ -10,7 +10,7 @@ nav
       a.white-anchors(href='') PLANS
     li.nav-line
       if user
-        a.white-anchors(href='') #{user.name}
+        a.white-anchors(href='/updateUser') #{user.name}
         li.nav-line
           a.white-anchors(href='/logout') LOGOUT
       else

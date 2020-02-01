@@ -393,3 +393,8 @@ footer {
   margin-top: 2%;
   font-size: 140%;
 }
+.img-size {
+  height: 40vh;
+  width: 40vh;
+  border-radius: 75%;
+}

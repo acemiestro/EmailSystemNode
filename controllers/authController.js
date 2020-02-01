@@ -58,10 +58,10 @@ module.exports.protectRoute = async function(req, res, next) {
   // console.log(req.headers.Authorization);
   // console.log(req.headers);
   try {
-    if (req.headers && req.headers.authorization) {
+    if (req.cookies && req.cookies.jwt) {
       // 2. Verfiy the token{
-      const token = req.headers.authorization.split(" ")[1];
-      const ans = await jwt.verify(token, KEY);
+        const token = req.cookies.jwt
+        const ans = await jwt.verify(token, KEY);
       if (ans) {
         next();
       } else {

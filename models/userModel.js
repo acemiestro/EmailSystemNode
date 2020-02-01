@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: Number
   },
+  photo: {
+    type: "String",
+    default: "default.jpeg"
+  },
   token:String
 });
 

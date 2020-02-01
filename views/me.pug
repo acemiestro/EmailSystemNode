@@ -1,0 +1,12 @@
+extend base 
+block content
+  h2
+    img(src=`${user.photo}`, alt="").img-size
+  h2 Name   #{user.name}
+  h2 Email  #{user.email}
+  if user.phone 
+    h2 phone #{user.phone}
+  h2 
+    .btn-parent
+      button(type="submit").btn.btn-primary 
+        a(href="/updateUser") Update user

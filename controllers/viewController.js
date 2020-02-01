@@ -14,8 +14,16 @@ module.exports.getPlansPage = async function(req, res) {
 };
 
 module.exports.getLoginPage = function(req, res) {
-  const user = req.user
-  res.render("login.pug", { title: "Login Page", user: user });
+  res.render("login.pug", { title: "Login Page" });
+};
+module.exports.getProfilePage = function(req, res) {
+  const user = req.user;
+  // console.log(user);
+  res.render("me.pug", { user });
+};
+module.exports.getUpdateUserPage = function(req, res) {
+  const user = req.user;
+  res.render("updateUser", { user });
 };
 
 module.exports.getSignupPage = function(req, res) {
