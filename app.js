@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const planRouter = require("./routers/planRouter");
 const userRouter = require("./routers/userRouter");
 const viewRouter = require("./routers/viewRouter");
+const bookingRouter = require("./routers/bookingRouter");
 // converts buffer to json
 // 
 app.use(express.urlencoded({extended:true}));
@@ -32,6 +33,7 @@ app.use("/", viewRouter);
 
 app.use("/api/plans", planRouter);
 app.use("/api/users", userRouter);
+app.use("/api/booking", bookingRouter);
 
 // app.get("/plans",);
 // createPlans

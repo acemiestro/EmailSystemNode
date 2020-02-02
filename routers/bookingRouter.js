@@ -6,3 +6,5 @@ const{
 } = require("../controllers/bookingController");
 
 bookingRouter.get("/:id", createCheckoutSession);
+
+module.exports = bookingRouter;
