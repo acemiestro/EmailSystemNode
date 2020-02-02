@@ -42,6 +42,11 @@ var upload = multer({
   fileFilter
 })
 
+planRouter.post("/:id", upload.fields([
+  {name:"cover", maxCount: 1},
+  {name:"pictures", maxCount: 3}
+]), updatePlan)
+
 planRouter
   .route("")
   .get(protectRoute, getAllPlans)

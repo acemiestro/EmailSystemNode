@@ -24,12 +24,7 @@ async function sendSignUP(name, password, confirmPassword, email, role, phone) {
 
 }
 
-async function addFormdata(form) {    
-    const button=document.querySelector(".updatebtn");
-    const id=button.getAttribute("planId")
-    const response = await axios.patch(`/api/plans/${id}`, form);
-    if (response.data.success) { alert("Plan Successfully uploaded") }
-}
+
 
 if(login){
     login.addEventListener("submit", function(event){
@@ -55,15 +50,3 @@ if(signup){
     })
 }
 
-if(uploadPlanImages) {
-  uploadPlanImages.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const form = new FormData();
-    const inputs = document.getElementsByTagName("input");
-    form.append("cover",inputs[0].value);
-    for (var i = 1; i < inputs.length; i++) {
-      form.append("picture",inputs[i].value);
-    }
-    addFormdata(form)
-  })
-}
