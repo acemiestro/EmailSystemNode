@@ -5,7 +5,8 @@ const {
   getLoginPage,
   getProfilePage,
   getUpdateUserPage,
-  getSignupPage
+  getSignupPage,
+  getPlansDetailsPage
 } = require("../controllers/viewController");
 const {
   protectRoute,
@@ -19,6 +20,7 @@ viewRouter.route("/me").get(protectRoute, getProfilePage);
 viewRouter.route("/login").get(getLoginPage);
 viewRouter.route("/signup").get(getSignupPage);
 viewRouter.route("/updateUser").get(protectRoute, getUpdateUserPage);
+viewRouter.route("/plans/:id").get(getPlansDetailsPage);
 viewRouter.route("").get(getHomePage);
 
 module.exports = viewRouter;

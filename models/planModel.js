@@ -42,7 +42,15 @@ const planSchema = new mongoose.Schema({
   duration: {
     type: Number,
     default: 30
-  }
+  },
+  // cover:{
+  //   type:"String",
+  //   required:true
+  // },
+  // pictures:{
+  //   type:[String],
+  //   required:true
+  // }
 });
 // model
 const planModel = mongoose.model("planModel", planSchema);

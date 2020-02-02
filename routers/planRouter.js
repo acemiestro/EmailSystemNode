@@ -1,4 +1,6 @@
 const express = require("express");
+const multer=require("multer");
+
 const planRouter = express.Router();
 const {
   deletePlan,
@@ -12,6 +14,34 @@ const {
 // api/plans => post
 const { protectRoute } = require("../controllers/authController");
 
+var storage = multer.diskStorage({
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + ".jpeg")
+  }, 
+  destination: function (req, file, cb) {
+    cb(null, 'public');
+  }
+})
+
+const fileFilter = function (req, file, cb) {
+  try {
+    if (file.mimetype.startsWith("image")) {
+      cb(null, true)
+    }
+    else {
+      // cb(null, false);
+      cb(new Error("Wrong file format"))
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+var upload = multer({
+  storage: storage,
+  fileFilter
+})
+
 planRouter
   .route("")
   .get(protectRoute, getAllPlans)
@@ -19,7 +49,10 @@ planRouter
 planRouter.route("/best-5-plans").get(queryAdder, getAllPlans);
 planRouter
   .route("/:id")
-  .patch(updatePlan)
+  .patch(upload.fields([
+    { name: "cover", maxCount: 1},
+    { name: "picture", maxCount: 3}
+  ]), updatePlan)
   .delete(deletePlan)
   .get(getPlan);
 module.exports = planRouter;

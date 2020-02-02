@@ -1,7 +1,7 @@
 // const plans = require("../data/plans");
 const planModel = require("../models/planModel");
 
-module.exports.checkInput = function(req, res, next) {
+module.exports.checkInput = function (req, res, next) {
   // console.log(req.body);
   if (Object.keys(req.body).length == 0) {
     return res.json({
@@ -10,14 +10,14 @@ module.exports.checkInput = function(req, res, next) {
   }
   next();
 };
-module.exports.deletePlan = async function(req, res) {
+module.exports.deletePlan = async function (req, res) {
   const { id } = req.params;
   const deletedPlan = await planModel.findByIdAndDelete(id);
   res.json({
     deletedPlan
   });
 };
-module.exports.getPlan = async function(req, res) {
+module.exports.getPlan = async function (req, res) {
   const { id } = req.params;
   const Plan = await planModel.findById(id);
   res.json({
@@ -25,7 +25,7 @@ module.exports.getPlan = async function(req, res) {
   });
 };
 // Aliasing
-module.exports.queryAdder = function(req, res, next) {
+module.exports.queryAdder = function (req, res, next) {
   req.query = {
     price: { gte: "40" },
     sort: "-ratingAverage",
@@ -33,7 +33,7 @@ module.exports.queryAdder = function(req, res, next) {
   };
   next();
 };
-module.exports.getAllPlans = async function(req, res) {
+module.exports.getAllPlans = async function (req, res) {
   // data save
   const oQuery = { ...req.query };
   console.log(req.query);
@@ -50,7 +50,7 @@ module.exports.getAllPlans = async function(req, res) {
   // console.log(str);
   // regular expressions
 
-  str = str.replace(/gt|gte|lt|lte/g, function(match) {
+  str = str.replace(/gt|gte|lt|lte/g, function (match) {
     return "$" + match;
   });
   // console.log(str);
@@ -85,17 +85,19 @@ module.exports.getAllPlans = async function(req, res) {
     // data: "reached get all plans"
   });
 };
-module.exports.updatePlan = async function(req, res) {
+module.exports.updatePlan = async function (req, res) {
   const { id } = req.params;
   const values = req.body;
+  console.log(req.file);
   const updatedPlan = await planModel.findByIdAndUpdate(id, values, {
     new: true
   });
   res.json({
+    success:"Plan updated",
     updatedPlan
   });
 };
-module.exports.createPlan = async function(req, res) {
+module.exports.createPlan = async function (req, res) {
   // create plan planModel=> cloud db
   try {
     const plan = req.body;

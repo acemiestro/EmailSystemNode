@@ -398,3 +398,12 @@ footer {
   width: 40vh;
   border-radius: 75%;
 }
+.signup-parent{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.planDetail-parent{
+  display: flex;
+  justify-content: space-evenly;
+}
