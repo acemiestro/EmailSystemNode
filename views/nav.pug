@@ -1,7 +1,7 @@
 nav
   ul.navigation
     li.nav-line
-      a.white-anchors.active(href='') FEATURES
+      a.white-anchors.active(href='#features-section') FEATURES
     li.nav-line
       a.white-anchors(href='') DETAILS
     li.nav-line
@@ -10,7 +10,7 @@ nav
       a.white-anchors(href='/plans') PLANS
     li.nav-line
       if user
-        a.white-anchors(href='/updateUser') #{user.name}
+        a.white-anchors(href='/me') #{user.name}
         li.nav-line
           a.white-anchors(href='/logout') LOGOUT
       else

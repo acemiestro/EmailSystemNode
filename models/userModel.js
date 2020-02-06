@@ -51,7 +51,10 @@ const userSchema = new mongoose.Schema({
     type: "String",
     default: "default.jpeg"
   },
-  token:String
+  token:String,
+  userBookedPlansId: {
+    type: String
+  }
 });
 
 userSchema.pre("save", function() {
