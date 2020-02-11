@@ -36,16 +36,20 @@ const {
   resetPassword,
   protectRoute
 } = require("../controllers/authController");
-const { getUser, updateUser } = require("../controllers/userController");
+const { 
+  getUser, 
+  updateUser 
+} = require("../controllers/userController");
+
 userRouter.route("/signup").post(signup);
 userRouter.route("/login").post(login);
 userRouter.route("/getUser").get(getUser);
 userRouter.route("/forgetPassword").patch(forgetPassword);
 userRouter.route("/resetPassword").patch(resetPassword);
 
-userRouter
+userRouter  
   .route("/updateUser/:id")
   .post(protectRoute, upload.single("photo"), updateUser);
 // userRouter.route("/updatePassword").patch(updatePassword);
-userRouter.route("/signup").post(signup)
+  
 module.exports = userRouter;

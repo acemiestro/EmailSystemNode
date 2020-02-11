@@ -2,25 +2,25 @@ extend base
 block content
     .planDetail-parent
         include detailPlan
-        section
-            form.uploadPlanImages(method="POST" enctype="multipart/form-data" action=`http://localhost:000/api/plans/${plan["_id"]}`)
-                .entry
-                    .entry-text
-                        | update Photo
-                    input(type='file' name='cover')
-                .entry
-                    .entry-text
-                        | update Photo
-                    input(type='file' name='pictures')
-                .entry
-                    .entry-text
-                        | update Photo
-                    input(type='file' name='pictures')
+        //- section
+        //-     form.uploadPlanImages(method="POST" enctype="multipart/form-data" action=`http://localhost:000/api/plans/${plan["_id"]}`)
+        //-         .entry
+        //-             .entry-text
+        //-                 | update Photo
+        //-             input(type='file' name='cover')
+        //-         .entry
+        //-             .entry-text
+        //-                 | update Photo
+        //-             input(type='file' name='pictures')
+        //-         .entry
+        //-             .entry-text
+        //-                 | update Photo
+        //-             input(type='file' name='pictures')
                     
-                .entry
-                    .entry-text
-                        | update Photo
-                    input(type='file' name='pictures')
+        //-         .entry
+        //-             .entry-text
+        //-                 | update Photo
+        //-             input(type='file' name='pictures')
                     
-                .btn-parent
-                    button(type="submit" planId=`${plan["_id"]}`).btn.btn-primary.updatebtn add Images
+        //-         .btn-parent
+        //-             button(type="submit" planId=`${plan["_id"]}`).btn.btn-primary.updatebtn add Images

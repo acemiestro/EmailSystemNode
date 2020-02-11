@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 // const users = require("./data/users");
@@ -10,6 +10,9 @@ const viewRouter = require("./routers/viewRouter");
 const bookingRouter = require("./routers/bookingRouter");
 // converts buffer to json
 // 
+app.use(cors());
+app.post("/webhook-checkout",bodyParser.raw({ type: 'application/json' }), bookingController.createBooking);
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 // => static files

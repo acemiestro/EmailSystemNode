@@ -54,6 +54,7 @@ if(bookPlan) {
         const id = bookPlan.getAttribute("planId")
         const response = await axios.get("/api/booking/" + id)
         const session = response.data.session;
+        const userId = response.data.userId;
         console.log(session.id);
         stripe
             .redirectToCheckout({
@@ -62,10 +63,17 @@ if(bookPlan) {
                 // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
                 sessionId: session.id
             })
-            .then(function (result) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, display the localized error message to your customer
-                // using `result.error.message`.
+            .then(function (resultFromStripe) {
+                console.log(resultFromStripe)
+                if (resultFromStripe.error.message) {
+                    // /api/bookings/removeNewbooking
+                alert("Booking Failed");
+                       // => remove th booking
+                } 
+                else {}
+                      // If `redirectToCheckout` fails due to a browser or network
+                      // error, display the localized error message to your customer
+                      // using `result.error.message`.
             });
     })
 }

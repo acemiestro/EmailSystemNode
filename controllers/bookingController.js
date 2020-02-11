@@ -18,8 +18,8 @@ module.exports.createCheckoutSession = async function(req, res) {
           currency: 'inr',
           quantity: 1,
         }],
-        success_url: 'https://localhost:4000/me',
-        cancel_url: 'https://localhost:4000/login',
+        success_url: `${req.protocol}://${req.get("host")}/me`,
+        cancel_url: `${req.protocol}://${req.get("host")}/login`,
     });
     res.json({
         session
@@ -117,4 +117,24 @@ module.exports.createNewBooking = async function (req, res) {
       success: "New Plan Added"
     });
   }
+}
+module.exports.createBooking = async function (request, response) {
+  const sig = request.headers['stripe-signature'];
+  let event;
+  const endpointSecret = END_POINT_SECRET;
+  try {
+    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    // console.log(event);
+  }
+  catch (err) {
+  return  response.status(400).send(`Webhook Error: ${err.message}`);
+  }
+  if(event.type=="checkout.session.completed"){
+    const userEmail = event.data.object.customer_email;
+    console.log(event.data.object);
+    const planId = event.data.object.client_reference_id;
+    await createNewBooking(userEmail, planId);
+    // payment complete
+  }
+  response.json({ received: true });
 }
